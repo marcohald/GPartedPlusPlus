@@ -57,6 +57,7 @@ jhead
 jq
 kbd
 less
+lldpd
 lftp
 libbde-utils
 libewf-dev
@@ -79,6 +80,7 @@ nmap
 nmon
 ntfs-3g
 nvme-cli
+open-iscsi
 openssh-client
 openssh-server
 openssl
