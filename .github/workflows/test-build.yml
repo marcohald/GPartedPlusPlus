@@ -206,6 +206,8 @@ jobs:
         cd $SQUASHFS_TMP
         sudo mksquashfs $SQUASHFS_ROOT filesystem.squashfs.new -b 1024k -comp xz -Xbcj x86 -e boot
         sudo cp filesystem.squashfs.new $ZIP_TMP/live/filesystem.squashfs
+
+        cp filesystem.squashfs.new $FS_OUT_PATH
         
         sudo find $ZIP_TMP -type f -exec sha256sum {} \; 1>/tmp/sha256sum.txt
         sudo cp -f /tmp/sha256sum.txt $ZIP_TMP/sha256sum.txt
