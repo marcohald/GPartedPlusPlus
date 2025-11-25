@@ -1,7 +1,4 @@
 acpi
-apfsprogs
-apfs-dkms
-apfs-fuse
 aria2
 archivemount
 autopsy
@@ -131,7 +128,6 @@ sysbench
 sysfsutils
 tar
 tcpdump
-tcptrace
 tcpreplay
 telnet
 tftp-hpa
