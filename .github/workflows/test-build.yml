@@ -72,11 +72,18 @@ jobs:
         echo "GPARTED_BASE_NAME=$GPARTED_BASE_NAME" >> $GITHUB_ENV
         echo "GPARTED_BASE_FPATH=$GPARTED_BASE_FPATH" >> $GITHUB_ENV
 
-        ISO_OUT_FNAME="$GPARTED_BASE_NAME-maaaaz-edition-$(date '+%Y%m%d').iso"
+        OUT_FNAME="$GPARTED_BASE_NAME-maaaaz-edition-$(date '+%Y%m%d')"
+        ISO_OUT_FNAME="$OUT_FNAME.iso"
         echo "ISO_OUT_FNAME=$ISO_OUT_FNAME" >> $GITHUB_ENV
         
         ISO_OUT_PATH="$ROOT_DIR/$ISO_OUT_FNAME"
         echo "ISO_OUT_PATH=$ISO_OUT_PATH" >> $GITHUB_ENV
+        
+        FS_OUT_FNAME="$OUT_FNAME.squashfs"
+        echo "FS_OUT_FNAME=$FS_OUT_FNAME" >> $GITHUB_ENV
+        
+        FS_OUT_PATH="$ROOT_DIR/$FS_OUT_FNAME"
+        echo "FS_OUT_PATH=$FS_OUT_PATH" >> $GITHUB_ENV
         
         #time wget -nv https://freefr.dl.sourceforge.net/project/gparted/gparted-live-stable/1.4.0-5/gparted-live-1.4.0-5-amd64.zip
         #time wget -nv https://altushost-swe.dl.sourceforge.net/project/gparted/gparted-live-stable/1.4.0-5/gparted-live-1.4.0-5-amd64.zip
@@ -212,6 +219,7 @@ jobs:
         SHA256SUM="$ROOT_DIR/sha256sum_iso.txt"
         echo "SHA256SUM=$SHA256SUM" >> $GITHUB_ENV
         sha256sum --tag $ISO_OUT_FNAME | tee $SHA256SUM
+        sha256sum --tag $FS_OUT_FNAME | tee $SHA256SUM
         
       shell: bash
 
@@ -223,4 +231,5 @@ jobs:
         tag_name: ${{ env.ISO_OUT_FNAME }}
         files: |
           ${{ env.ISO_OUT_PATH }}
+          ${{ env.FS_OUT_PATH }}
           ${{ env.FS_PKGS }}
