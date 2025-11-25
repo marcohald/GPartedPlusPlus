@@ -61,7 +61,8 @@ jobs:
         gpg --verify CHECKSUMS.TXT.gpg CHECKSUMS.TXT
         
         time wget -nv "$GPARTED_BASE_ZIP_URL"
-        sha256sum -c --ignore-missing CHECKSUMS.TXT
+        awk '/^### SHA256SUMS:/{flag=1; next} /^###/{flag=0} flag' CHECKSUMS.TXT > SHA256.block
+        sha256sum -c --ignore-missing SHA256.block
 
         GPARTED_BASE_FPATH=$(realpath $GPARTED_BASE_FULL_FNAME)
         ls -al $GPARTED_BASE_FPATH
